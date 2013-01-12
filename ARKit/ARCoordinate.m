@@ -24,7 +24,7 @@
 	[newCoordinate setAzimuth: newAzimuth];
 	[newCoordinate setTitle: @""];
 	
-	return [newCoordinate autorelease];
+	return newCoordinate;
 }
 
 - (NSUInteger)hash {
@@ -58,10 +58,8 @@
 }
 
 - (void)dealloc {
-	
 	[self setTitle: nil];
 	[self setSubtitle: nil];
-	[super dealloc];
 }
 
 - (NSString *)description {

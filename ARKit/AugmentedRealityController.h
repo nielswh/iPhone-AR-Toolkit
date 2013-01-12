@@ -16,24 +16,11 @@
 
 @interface AugmentedRealityController : NSObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 
-	id<ARDelegate> delegate;
-    
-    BOOL scaleViewsBasedOnDistance;
-	BOOL rotateViewsBasedOnPerspective;
-
-	double maximumScaleDistance;
-	double minimumScaleFactor;
-	double maximumRotationAngle;
-
-	ARCoordinate		*centerCoordinate;
-	CLLocationManager	*locationManager;
-	UIViewController	*rootViewController;
 	
 @private
 	double	latestHeading;
 	double  degreeRange;
 	
-	BOOL	debugMode;
    
     float	viewAngle;
 	float   prevHeading;

@@ -20,12 +20,12 @@
 
 @implementation MarkerView
 
-
 @synthesize coordinateInfo;
 @synthesize delegate;
 @synthesize lblDistance;
 
-- (id)initForCoordinate:(ARGeoCoordinate *)coordinate withDelgate:(id<ARMarkerDelegate>) aDelegate {
+- (id)initForCoordinate:(ARGeoCoordinate *)coordinate withDelgate:(id<ARMarkerDelegate>) aDelegate
+{
     
 	[self setCoordinateInfo:coordinate];
     [self setDelegate:aDelegate];
@@ -53,7 +53,7 @@
 		[distLbl setBackgroundColor: [UIColor colorWithWhite:.3 alpha:BOX_ALPHA]];
 		[distLbl setTextColor:		[UIColor whiteColor]];
 		[distLbl setTextAlignment:	UITextAlignmentCenter];
-		[distLbl setText:			[NSString stringWithFormat:@"%d", [coordinate distanceFromOrigin]]];
+		[distLbl setText:			[NSString stringWithFormat:@"%f", [coordinate distanceFromOrigin]]];
 		[distLbl sizeToFit];
         
         
@@ -79,32 +79,31 @@
 
 		[self addSubview:pointView];
 		[self setBackgroundColor:[UIColor clearColor]];
-        
-		[titleLabel release];
-        [distLbl release];
-		[pointView release];
-        
 	}
 	
     return self;
 }
 
--(void) drawRect:(CGRect)rect {
+-(void) drawRect:(CGRect)rect
+{
     [super drawRect:rect];
     [[self lblDistance] setText:[NSString stringWithFormat:@"%.2f km", [[self coordinateInfo] distanceFromOrigin]/1000.0f]];
     
 }
 
-- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
     NSLog(@"%@ was touched!",[[self coordinateInfo] title]);
     [delegate didTapMarker:[self coordinateInfo]];
 
 }
 
-- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+- (void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
 }
 
-- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
     
     CGRect theFrame = CGRectMake(0, 0, BOX_WIDTH, BOX_HEIGHT);
     
@@ -116,8 +115,9 @@
 
 
 
-- (void)dealloc {
-    [super dealloc];
+- (void)dealloc
+{
+
 }
 
 

@@ -20,15 +20,11 @@
     [self setViewController:vc];
     
     [window addSubview:[viewController view]];
-    [vc release];
     [window makeKeyAndVisible];
 }
 
 - (void)dealloc {
     
-    [viewController release];
-    [window release];
-    [super dealloc];
 }
 
 

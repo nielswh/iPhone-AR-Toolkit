@@ -13,10 +13,7 @@
 
 @class AugmentedRealityController;
 
-@interface ARViewController : UIViewController<ARMarkerDelegate, ARDelegate> {
-	AugmentedRealityController	*agController;
-	id<ARLocationDelegate> delegate;
-}
+@interface ARViewController : UIViewController<ARMarkerDelegate, ARDelegate>
 
 @property (nonatomic, retain) AugmentedRealityController *agController;
 @property (nonatomic, assign) id<ARLocationDelegate> delegate;

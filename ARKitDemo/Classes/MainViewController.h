@@ -10,17 +10,13 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface MainViewController : UIViewController<ARLocationDelegate> {
-    ARViewController *cameraViewController;
-    UIViewController *infoViewController;
-}
+@interface MainViewController : UIViewController<ARLocationDelegate>
 
 -(IBAction) displayAR:(id) sender;
 
 @property (nonatomic, retain) ARViewController *cameraViewController;
 @property (nonatomic, retain) UIViewController *infoViewController;
-
 @property (retain, nonatomic) IBOutlet UISwitch *ScaleOnDistance;
-
 @property (retain, nonatomic) IBOutlet UISwitch *DebugModeSwitch;
+
 @end

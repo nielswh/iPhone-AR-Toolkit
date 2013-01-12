@@ -128,19 +128,17 @@
     [[camView layer] insertSublayer:newCaptureVideoPreviewLayer below:[[[camView layer] sublayers] objectAtIndex:0]];
     
     [self setPreviewLayer:newCaptureVideoPreviewLayer];
-    [newCaptureVideoPreviewLayer release];
     
     [avCaptureSession setSessionPreset:AVCaptureSessionPresetLow];
     [avCaptureSession startRunning];
     
     [self setCaptureSession:avCaptureSession];  
-    [avCaptureSession release];
+  
 #endif
 
     CLLocation *newCenter = [[CLLocation alloc] initWithLatitude:37.41711 longitude:-122.02528]; //TODO: We should get the latest heading here.
 	
 	[self setCenterLocation: newCenter];
-	[newCenter release];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceOrientationDidChange:) 
                                                  name: UIDeviceOrientationDidChangeNotification object:nil];
@@ -149,9 +147,6 @@
 	[self startListening];
     [self setCameraView:camView];
     [self setDisplayView:displayV];
-    
-    [camView release];
-    [displayV release];
     
   	return self;
 }
@@ -169,15 +164,9 @@
     [self stopListening];
     [self unloadAV];
 	[[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
-    [centerLocation release];
-    [cameraView release];
-    [displayView release];
+
     locationManager.delegate = nil;
     [UIAccelerometer sharedAccelerometer].delegate = nil;
-	[locationManager release];
-	[coordinates release];
-	[debugView release];
-    [super dealloc];
 }
 
 #pragma mark -	
@@ -196,7 +185,6 @@
 		[newLocationManager setDelegate: self];
         
         [self setLocationManager: newLocationManager];
-        [newLocationManager release];
 	}
 			
 	if (![self accelerometerManager]) {
@@ -270,8 +258,7 @@
 }
 
 - (void)setCenterLocation:(CLLocation *)newLocation {
-	[centerLocation release];
-	centerLocation = [newLocation retain];
+	centerLocation = newLocation;
 	
 	for (ARGeoCoordinate *geoLocation in [self coordinates]) {
 		

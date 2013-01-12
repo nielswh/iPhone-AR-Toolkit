@@ -11,7 +11,6 @@
 
 @class ARGeoCoordinate;
 
-
 @protocol ARMarkerDelegate <NSObject>
 -(void) didTapMarker:(ARGeoCoordinate *) coordinate;
 @end

@@ -23,10 +23,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ContentManager);
 
 - (void)dealloc
 {
-    [__managedObjectContext release];
-    [__managedObjectModel release];
-    [__persistentStoreCoordinator release];
-    [super dealloc];
 }
 
 
@@ -38,10 +34,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ContentManager);
 	[controllerList addObject:controller];
     
     if (prevViewController != nil)
-    {
-        [prevViewController release];
         prevViewController = nil;
-    }
 	
 	[self setPrevViewController: controller];
 	
@@ -56,10 +49,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(ContentManager);
 		if ([controllerList count] > 0)
         {
 			if (prevViewController != nil)
-            {
-                [prevViewController release];
                 prevViewController = nil;
-            }
 
             [self setPrevViewController: (UIViewController*)[controllerList lastObject]];
         }

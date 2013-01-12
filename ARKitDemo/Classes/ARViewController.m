@@ -46,9 +46,7 @@
     [closeBtn setBackgroundColor:[UIColor greenColor]];
     [closeBtn addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [[self view] addSubview:closeBtn];
-    
-    [closeBtn release];
-	
+
 	GEOLocations* locations = [[GEOLocations alloc] initWithDelegate:delegate];
 	
 	if ([[locations returnLocations] count] > 0) {
@@ -57,13 +55,11 @@
             [coordinate setDisplayView:cv];
             
 			[arc addCoordinate:coordinate];
-			[cv release];
 		}
 	}
     
     [self setAgController:arc];
-    [arc release];
-	[locations release];
+
 }
 
 - (IBAction)closeButtonClicked:(id)sender {
@@ -114,12 +110,11 @@
 }
 
 - (void)viewDidUnload {
-    [agController release];
 	agController = nil;
 }
 
 - (void)dealloc {
-    [super dealloc];
+
 }
 
 

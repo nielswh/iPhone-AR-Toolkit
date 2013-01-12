@@ -11,18 +11,12 @@
  
 @class ARCoordinate;
 
-@interface GEOLocations : NSObject {
-	
-
-	id<ARLocationDelegate> delegate;
-}
+@interface GEOLocations : NSObject
 
 @property(nonatomic,assign) id<ARLocationDelegate> delegate;
 
 - (id)initWithDelegate:(id<ARLocationDelegate>) aDelegate;
 -(NSMutableArray*) returnLocations;
-
-
 
 
 @end

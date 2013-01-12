@@ -54,7 +54,7 @@
 	[newCoordinate setGeoLocation: location];
 	[newCoordinate setTitle: titleOfLocation];
 	
-	return [newCoordinate autorelease];
+	return newCoordinate;
 }
 
 + (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location fromOrigin:(CLLocation *)origin {
