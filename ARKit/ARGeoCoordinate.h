@@ -10,12 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "ARCoordinate.h"
 
-@interface ARGeoCoordinate : ARCoordinate {
-	CLLocation *geoLocation;
-    double distanceFromOrigin;
-    UIView *displayView;
-    
-}
+@interface ARGeoCoordinate : ARCoordinate
 
 @property (nonatomic, retain) CLLocation *geoLocation;
 @property (nonatomic, retain) UIView *displayView;
