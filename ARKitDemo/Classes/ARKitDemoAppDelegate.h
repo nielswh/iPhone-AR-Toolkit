@@ -12,8 +12,7 @@
 @class MainViewController;
 
 @interface ARKitDemoAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    MainViewController *viewController;
+
 }
 
 

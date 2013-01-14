@@ -12,14 +12,7 @@
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiansToDegrees(x) (x * (180.0/M_PI))
 
-@interface ARCoordinate : NSObject {
-	double radialDistance;
-	double inclination;
-	double azimuth;
-	
-	NSString *title;
-	NSString *subtitle;
-}
+@interface ARCoordinate : NSObject
 
 - (NSUInteger) hash;
 - (BOOL) isEqual:(id)other;

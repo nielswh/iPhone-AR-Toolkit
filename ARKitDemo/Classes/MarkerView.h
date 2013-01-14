@@ -11,10 +11,7 @@
 
 @class ARGeoCoordinate;
 
-@interface MarkerView : UIView {
-    ARGeoCoordinate *coordinateInfo;
-    id<ARMarkerDelegate> delegate;
-}
+@interface MarkerView : UIView
 
 - (id)initForCoordinate:(ARGeoCoordinate *)coordinate withDelgate:(id<ARMarkerDelegate>) aDelegate;
 
