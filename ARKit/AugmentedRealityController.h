@@ -6,35 +6,23 @@
 //  Copyright 2011 Agilite Software All rights reserved.
 //
 
+#import "ARViewProtocol.h"
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "ARViewController.h"
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
 @class ARCoordinate;
 
-@interface AugmentedRealityController : NSObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 
+@interface AugmentedRealityController : NSObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	
 @private
 	double	latestHeading;
 	double  degreeRange;
-	
-   
     float	viewAngle;
 	float   prevHeading;
     int     cameraOrientation;
-    
-	NSMutableArray	*coordinates;
-    
-    UILabel				*debugView;
-    AVCaptureSession    *captureSession;
-    AVCaptureVideoPreviewLayer *previewLayer;
-    
-    UIAccelerometer		*accelerometerManager;
-	CLLocation			*centerLocation;
-	UIView				*displayView;
 
 }
 
@@ -51,8 +39,7 @@
 @property (nonatomic, retain) ARCoordinate              *centerCoordinate;
 @property (nonatomic, retain) CLLocation                *centerLocation;
 @property (nonatomic, retain) UIView                    *displayView;
-@property (nonatomic, retain) UIView                    *cameraView;
-@property (nonatomic, retain) UIViewController          *rootViewController;
+@property (nonatomic, retain) UIViewController          *parentViewController;
 @property (nonatomic, retain) AVCaptureSession          *captureSession;
 @property (nonatomic, retain) AVCaptureVideoPreviewLayer *previewLayer;
 
@@ -61,13 +48,14 @@
 
 @property (retain) UILabel  *debugView;
 
-@property (nonatomic,retain) NSMutableArray		*coordinates;
+@property (nonatomic,retain) NSMutableArray	*coordinates;
 
-- (id)initWithViewController:(UIViewController *)theView withDelgate:(id<ARDelegate>) aDelegate;
+- (id)initWithView:(UIView*)arView parentViewController:(UIViewController*)parentVC withDelgate:(id<ARDelegate>) aDelegate;
 
-- (void) setupDebugPostion;
-- (void) updateLocations;
-- (void) stopListening;
+- (void)setupDebugPostion;
+- (void)updateLocations;
+- (void)stopListening;
+- (void)unloadAV;
 
 // Adding coordinates to the underlying data model.
 - (void)addCoordinate:(ARGeoCoordinate *)coordinate;
@@ -75,7 +63,7 @@
 // Removing coordinates
 - (void)removeCoordinate:(ARGeoCoordinate *)coordinate;
 - (void)removeCoordinates:(NSArray *)coordinateArray;
-- (void) updateDebugMode:(BOOL) flag;
+- (void)updateDebugMode:(BOOL) flag;
 
 
 @end

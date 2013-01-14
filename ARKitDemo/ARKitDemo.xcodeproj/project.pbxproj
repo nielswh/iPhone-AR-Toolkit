@@ -24,6 +24,9 @@
 		7F4C19FA112678E50093704B /* ARKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C19F9112678E50093704B /* ARKit.m */; };
 		8C0F54F3141E66E5009D0D64 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0F54F1141E66E5009D0D64 /* MainViewController.m */; };
 		8C0F54F4141E66E5009D0D64 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0F54F2141E66E5009D0D64 /* MainViewController.xib */; };
+		8C49BF0716A36B6000A91335 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C49BF0616A36B6000A91335 /* Default-568h@2x.png */; };
+		8C4B5B1616A3B93600772004 /* FullScreenARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B5B1416A3B93600772004 /* FullScreenARViewController.m */; };
+		8C4B5B1716A3B93600772004 /* FullScreenARViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4B5B1516A3B93600772004 /* FullScreenARViewController.xib */; };
 		8C564DDE141BDC3C0092E120 /* AR-logo-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C564DDC141BDC3C0092E120 /* AR-logo-57.png */; };
 		8C564DDF141BDC3C0092E120 /* AR-logo-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8C564DDD141BDC3C0092E120 /* AR-logo-114.png */; };
 		8CD0EE40141FBA2100207B2F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD0EE3F141FBA2100207B2F /* AVFoundation.framework */; };
@@ -31,7 +34,6 @@
 		8CD21B801479B8EF00618F21 /* ContentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD21B7D1479B8EF00618F21 /* ContentManager.m */; };
 		8CD21B841479B9A900618F21 /* ARKitDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8CD21B821479B9A900618F21 /* ARKitDemo.xcdatamodeld */; };
 		8CD21B861479B9EA00618F21 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD21B851479B9EA00618F21 /* CoreData.framework */; };
-		B8E524E514AD2BEB002560E9 /* ARViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E524E214AD2BEB002560E9 /* ARViewController.m */; };
 		B8E524E614AD2BEB002560E9 /* MarkerView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8E524E414AD2BEB002560E9 /* MarkerView.m */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,10 @@
 		8C0F54F1141E66E5009D0D64 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		8C0F54F2141E66E5009D0D64 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		8C0F54F6141E9D4D009D0D64 /* ARViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewProtocol.h; sourceTree = "<group>"; };
+		8C49BF0616A36B6000A91335 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8C4B5B1316A3B93600772004 /* FullScreenARViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenARViewController.h; sourceTree = "<group>"; };
+		8C4B5B1416A3B93600772004 /* FullScreenARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenARViewController.m; sourceTree = "<group>"; };
+		8C4B5B1516A3B93600772004 /* FullScreenARViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FullScreenARViewController.xib; sourceTree = "<group>"; };
 		8C564DDC141BDC3C0092E120 /* AR-logo-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AR-logo-57.png"; sourceTree = "<group>"; };
 		8C564DDD141BDC3C0092E120 /* AR-logo-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AR-logo-114.png"; sourceTree = "<group>"; };
 		8CD0EE3F141FBA2100207B2F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -74,8 +80,6 @@
 		8CD21B831479B9A900618F21 /* ARKitDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ARKitDemo.xcdatamodel; sourceTree = "<group>"; };
 		8CD21B851479B9EA00618F21 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* ARKitDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ARKitDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
-		B8E524E114AD2BEB002560E9 /* ARViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARViewController.h; sourceTree = "<group>"; };
-		B8E524E214AD2BEB002560E9 /* ARViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARViewController.m; sourceTree = "<group>"; };
 		B8E524E314AD2BEB002560E9 /* MarkerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkerView.h; sourceTree = "<group>"; };
 		B8E524E414AD2BEB002560E9 /* MarkerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,9 +89,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD0EE40141FBA2100207B2F /* AVFoundation.framework in Frameworks */,
 				8CD21B861479B9EA00618F21 /* CoreData.framework in Frameworks */,
 				8CD0EE4B141FBBCE00207B2F /* CoreMedia.framework in Frameworks */,
-				8CD0EE40141FBA2100207B2F /* AVFoundation.framework in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -105,8 +109,6 @@
 			children = (
 				8CD21B811479B97800618F21 /* Models */,
 				8CD21B7B1479B88600618F21 /* Managers */,
-				B8E524E114AD2BEB002560E9 /* ARViewController.h */,
-				B8E524E214AD2BEB002560E9 /* ARViewController.m */,
 				B8E524E314AD2BEB002560E9 /* MarkerView.h */,
 				B8E524E414AD2BEB002560E9 /* MarkerView.m */,
 				1D3623240D0F684500981E51 /* ARKitDemoAppDelegate.h */,
@@ -114,6 +116,9 @@
 				8C0F54F0141E66E5009D0D64 /* MainViewController.h */,
 				8C0F54F1141E66E5009D0D64 /* MainViewController.m */,
 				8C0F54F2141E66E5009D0D64 /* MainViewController.xib */,
+				8C4B5B1316A3B93600772004 /* FullScreenARViewController.h */,
+				8C4B5B1416A3B93600772004 /* FullScreenARViewController.m */,
+				8C4B5B1516A3B93600772004 /* FullScreenARViewController.xib */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8C49BF0616A36B6000A91335 /* Default-568h@2x.png */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -270,6 +276,8 @@
 				8C564DDE141BDC3C0092E120 /* AR-logo-57.png in Resources */,
 				8C564DDF141BDC3C0092E120 /* AR-logo-114.png in Resources */,
 				8C0F54F4141E66E5009D0D64 /* MainViewController.xib in Resources */,
+				8C49BF0716A36B6000A91335 /* Default-568h@2x.png in Resources */,
+				8C4B5B1716A3B93600772004 /* FullScreenARViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,8 +298,8 @@
 				8C0F54F3141E66E5009D0D64 /* MainViewController.m in Sources */,
 				8CD21B801479B8EF00618F21 /* ContentManager.m in Sources */,
 				8CD21B841479B9A900618F21 /* ARKitDemo.xcdatamodeld in Sources */,
-				B8E524E514AD2BEB002560E9 /* ARViewController.m in Sources */,
 				B8E524E614AD2BEB002560E9 /* MarkerView.m in Sources */,
+				8C4B5B1616A3B93600772004 /* FullScreenARViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,7 +321,7 @@
 				GCC_PREFIX_HEADER = ARKitDemo_Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ARKitDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = ARKitDemo;
@@ -336,7 +344,7 @@
 				GCC_PREFIX_HEADER = ARKitDemo_Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ARKitDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = ARKitDemo;
@@ -356,7 +364,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_UNROLL_LOOPS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -377,7 +385,7 @@
 				GCC_PREFIX_HEADER = ARKitDemo_Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "ARKitDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = ARKitDemo;
@@ -394,7 +402,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -414,7 +422,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_UNROLL_LOOPS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

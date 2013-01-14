@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "ARViewProtocol.h"
 
-
-@interface MainViewController : UIViewController<ARLocationDelegate>
+@interface MainViewController : UIViewController<ARLocationDelegate,ARDelegate,ARMarkerDelegate>
 
 -(IBAction) displayAR:(id) sender;
+- (IBAction)displayARFullScreen:(id)sender;
 
-@property (nonatomic, retain) ARViewController *cameraViewController;
 @property (nonatomic, retain) UIViewController *infoViewController;
 @property (retain, nonatomic) IBOutlet UISwitch *ScaleOnDistance;
 @property (retain, nonatomic) IBOutlet UISwitch *DebugModeSwitch;
 
+@property (weak, nonatomic) IBOutlet UIView *arView;
 @end

@@ -19,7 +19,9 @@
 	MainViewController *vc = [[MainViewController alloc] init];
     [self setViewController:vc];
     
-    [window addSubview:[viewController view]];
+   // [window addSubview:[viewController view]];
+    
+     [self.window setRootViewController:vc];
     [window makeKeyAndVisible];
 }
 

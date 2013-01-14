@@ -9,10 +9,20 @@
 #import "ARKitDemoAppDelegate.h"
 #import "MainViewController.h"
 #import "ContentManager.h"
+#import "AugmentedRealityController.h"
+#import "GEOLocations.h"
+#import "MarkerView.h"
+#import "ContentManager.h"
+#import "FullScreenARViewController.h"
+
+@interface MainViewController  () {
+   AugmentedRealityController  *arc;
+}
+
+@end
 
 @implementation MainViewController
 
-@synthesize cameraViewController;
 @synthesize infoViewController;
 @synthesize ScaleOnDistance;
 @synthesize DebugModeSwitch;
@@ -35,6 +45,12 @@
 
 }
 
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -50,53 +66,132 @@
     [[ContentManager sharedContentManager] setScaleOnDistance:[[self ScaleOnDistance] isOn]];
 }
 
--(IBAction) displayAR:(id)sender {
+- (void)notSupportView
+{
+    ARKitDemoAppDelegate *appDelegate = (ARKitDemoAppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    if([ARKit deviceSupportsAR]){
-        ARViewController *arvc = [[ARViewController alloc] initWithDelegate:self];
-        [self setCameraViewController:arvc];
+    UIViewController *newInfoViewController = [[UIViewController alloc] init];
+    [self setInfoViewController:newInfoViewController];
+    
+    UILabel *errorLabel = [[UILabel alloc] init];
+    [errorLabel setNumberOfLines:0];
+    [errorLabel setText: @"Augmented Reality is not supported on this device"];
+    [errorLabel setFrame: [[infoViewController view] bounds]];
+    [errorLabel setTextAlignment:NSTextAlignmentCenter];
+    [[infoViewController view] addSubview:errorLabel];
+    
+    UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+    [closeButton setTitle:@"Close" forState:UIControlStateNormal];
+    
+    [closeButton setBackgroundColor:[UIColor blueColor]];
+    [closeButton addTarget:self action:@selector(closeNotSupportedView:) forControlEvents:UIControlEventTouchUpInside];
+    [[infoViewController view] addSubview:closeButton];
+    
+    [[appDelegate window] addSubview:[infoViewController view]];
+}
 
-        [cameraViewController setModalTransitionStyle: UIModalTransitionStyleFlipHorizontal];
-        [self presentModalViewController:cameraViewController animated:YES];
-        arvc = nil;
+- (void)populateGeoLocations
+{
+    GEOLocations* locations = [[GEOLocations alloc] initWithDelegate:self];
+    
+    if ([[locations returnLocations] count] > 0) {
+        for (ARGeoCoordinate *coordinate in [locations returnLocations]) {
+            MarkerView *cv = [[MarkerView alloc] initForCoordinate:coordinate withDelgate:self] ;
+            [coordinate setDisplayView:cv];
+            
+            [arc addCoordinate:coordinate];
+        }
     }
-    else {
-         ARKitDemoAppDelegate *appDelegate = (ARKitDemoAppDelegate*)[[UIApplication sharedApplication] delegate];
-        
-        UIViewController *newInfoViewController = [[UIViewController alloc] init];
-        [self setInfoViewController:newInfoViewController];
-        
-        UILabel *errorLabel = [[UILabel alloc] init];
-        [errorLabel setNumberOfLines:0];
-        [errorLabel setText: @"Augmented Reality is not supported on this device"];
-        [errorLabel setFrame: [[infoViewController view] bounds]];
-        [errorLabel setTextAlignment:UITextAlignmentCenter];
-        [[infoViewController view] addSubview:errorLabel];
-
-        UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-        [closeButton setTitle:@"Close" forState:UIControlStateNormal];
-        
-        [closeButton setBackgroundColor:[UIColor blueColor]];
-        [closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [[infoViewController view] addSubview:closeButton];
-
-        [[appDelegate window] addSubview:[infoViewController view]];
-   }
 }
 
-- (IBAction)closeButtonClicked:(id)sender {
-
-    [[[self infoViewController] view] removeFromSuperview];
-    infoViewController = nil;
-    
+- (IBAction)displayAR:(id)sender
+{
+    if ([ARKit deviceSupportsAR]) {
+        arc = [[AugmentedRealityController alloc] initWithView:[self arView] parentViewController:self withDelgate:self];
+        
+        [arc setDebugMode:[[ContentManager sharedContentManager] debugMode]];
+        [arc setScaleViewsBasedOnDistance:[[ContentManager sharedContentManager] scaleOnDistance]];
+        [arc setMinimumScaleFactor:0.5];
+        [arc setRotateViewsBasedOnPerspective:YES];
+        [arc updateDebugMode:![arc debugMode]];
+        
+        UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        
+        [closeBtn setTitle:@"Close" forState:UIControlStateNormal];
+        
+        [closeBtn setBackgroundColor:[UIColor greenColor]];
+        [closeBtn addTarget:self action:@selector(clearARView:) forControlEvents:UIControlEventTouchUpInside];
+        [[self arView] addSubview:closeBtn];
+        
+        [self populateGeoLocations];
+    }
+    else
+        [self notSupportView];
+   
 }
 
-- (IBAction)closeARButtonClicked:(id)sender {
+- (IBAction)displayARFullScreen:(id)sender
+{
+    if ([ARKit deviceSupportsAR]) {
     
-    [self dismissModalViewControllerAnimated:YES];
+        if (arc != nil)
+            [self clearARView:self];
+        
+        FullScreenARViewController *fullScreenVC = [[FullScreenARViewController alloc] initWithNibName:@"FullScreenARViewController" bundle:nil];
+        
+        arc = [[AugmentedRealityController alloc] initWithView:[fullScreenVC view] parentViewController:fullScreenVC withDelgate:self];
+        
+        [arc setDebugMode:[[ContentManager sharedContentManager] debugMode]];
+        [arc setScaleViewsBasedOnDistance:[[ContentManager sharedContentManager] scaleOnDistance]];
+        [arc setMinimumScaleFactor:0.5];
+        [arc setRotateViewsBasedOnPerspective:YES];
+        [arc updateDebugMode:![arc debugMode]];
+        
+        UIButton *closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
+        
+        [closeBtn setTitle:@"Close" forState:UIControlStateNormal];
+        
+        [closeBtn setBackgroundColor:[UIColor greenColor]];
+        [closeBtn addTarget:self action:@selector(closeFullScreen:) forControlEvents:UIControlEventTouchUpInside];
+        [[fullScreenVC view] addSubview:closeBtn];
+       
+        
+        [fullScreenVC setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        [self presentViewController:fullScreenVC animated:YES completion:nil];
+        
+         [self populateGeoLocations];
+        
+    }
+    else
+        [self notSupportView];
+
+}
+
+- (IBAction)closeNotSupportedView:(id)sender
+{
     [[[self infoViewController] view] removeFromSuperview];
     infoViewController = nil;
- 
+}
+
+- (IBAction)closeButtonClicked:(id)sender
+{
+    [[[self infoViewController] view] removeFromSuperview];
+    infoViewController = nil;
+}
+
+- (IBAction)clearARView:(id)sender {
+
+    [arc unloadAV];
+    [[[self arView] subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    arc = nil;
+}
+
+- (IBAction)closeFullScreen:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [arc unloadAV];
+    arc = nil;
+    
 }
 
 -(void) locationClicked:(ARGeoCoordinate *) coordinate {
@@ -111,7 +206,7 @@
         [errorLabel setNumberOfLines:0];
         [errorLabel setText: [NSString stringWithFormat:@"You clicked on %@ and distance is %.2f km",[coordinate title], [coordinate distanceFromOrigin]/1000.0f]];
         [errorLabel setFrame: [[infovc view] bounds]];
-        [errorLabel setTextAlignment:UITextAlignmentCenter];
+        [errorLabel setTextAlignment:NSTextAlignmentCenter];
         [[infovc view] addSubview:errorLabel];
         
         UIButton *closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 90, 30)];
@@ -121,21 +216,37 @@
         [closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [[infovc view] addSubview:closeButton];
         
-        UIButton *closeARButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, 120, 30)];
-        [closeARButton setTitle:@"Close AR View" forState:UIControlStateNormal];
-        
-        [closeARButton setBackgroundColor:[UIColor blackColor]];
-        [closeARButton addTarget:self action:@selector(closeARButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [[infovc view] addSubview:closeARButton];
- 
         [[appDelegate window] addSubview:[infovc view]];
         
         [self setInfoViewController:infovc];
     }
 }
 
+-(void) didTapMarker:(ARGeoCoordinate *) coordinate {
+    NSLog(@"delegate worked click on %@", [coordinate title]);
+    [self locationClicked:coordinate];
+    
+}
 
--(NSMutableArray*) geoLocations {
+-(void) didUpdateHeading:(CLHeading *)newHeading {
+ //   NSLog(@"Heading Updated");
+ 
+}
+-(void) didUpdateLocation:(CLLocation *)newLocation {
+    NSLog(@"Location Updated");
+    
+}
+-(void) didUpdateOrientation:(UIDeviceOrientation) orientation {
+    NSLog(@"Orientation Updated");
+    
+    if (orientation == UIDeviceOrientationPortrait)
+        NSLog(@"Protrait");
+    
+}
+
+
+-(NSMutableArray*) geoLocations
+{
     
     NSMutableArray *locationArray = [[NSMutableArray alloc] init];
     ARGeoCoordinate *tempCoordinate;
@@ -244,11 +355,12 @@
 {
     [self setDebugModeSwitch:nil];
     [self setScaleOnDistance:nil];
-    
+
+    [self setArView:nil];
     [super viewDidUnload];
     
-    if ([self cameraViewController] != nil) 
-        [self setCameraViewController:nil];
+    if (arc != nil)
+        arc = nil;
     
     if ([self infoViewController] != nil) 
         [self setInfoViewController:nil];

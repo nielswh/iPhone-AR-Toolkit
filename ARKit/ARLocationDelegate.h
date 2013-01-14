@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ARGeoCoordinate.h"
 
-
 @protocol ARLocationDelegate
 
 //returns an array of ARGeoCoordinates

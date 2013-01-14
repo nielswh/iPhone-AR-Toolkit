@@ -21,7 +21,7 @@
 	return self;
 }
 
--(NSMutableArray*) returnLocations 
+- (NSMutableArray*)returnLocations 
 {
 	return [delegate geoLocations];
 }
