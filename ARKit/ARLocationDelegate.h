@@ -3,10 +3,9 @@
 //  AR Kit
 //
 //  Created by Jared Crawford on 2/13/10.
-//  Copyright 2011. All rights reserved.
+//  Copyright 2013. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "ARGeoCoordinate.h"
 
 @protocol ARLocationDelegate

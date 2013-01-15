@@ -6,9 +6,6 @@
 //  Copyright 2009 Zac White. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
-
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiansToDegrees(x) (x * (180.0/M_PI))
 

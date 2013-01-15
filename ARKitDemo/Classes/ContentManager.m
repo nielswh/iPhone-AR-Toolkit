@@ -3,12 +3,11 @@
 //  ContentManager
 //
 //  Created by Niels Hansen on 10/9/11.
-//  Copyright 2011 Agilite Software. All rights reserved.
+//  Copyright 2013 Agilite Software. All rights reserved.
 //
 
 #import "ContentManager.h"
 #import "SynthesizeSingleton.h"
-
 
 @implementation ContentManager
 

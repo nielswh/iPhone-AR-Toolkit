@@ -3,7 +3,7 @@
 //  AR Kit
 //
 //  Modified by Niels Hansen on 11/23/11
-//  Copyright 2011 Agilite Software. All rights reserved.
+//  Copyright 2013 Agilite Software. All rights reserved.
 //
 
 #import "ARGeoCoordinate.h"
@@ -13,7 +13,8 @@
 @synthesize geoLocation;
 @synthesize displayView;
 
-- (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second {
+- (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second
+{
 	
 	float longitudinalDifference	= second.longitude - first.longitude;
 	float latitudinalDifference		= second.latitude  - first.latitude;
@@ -29,7 +30,8 @@
 	return 0.0f;
 }
 
-- (void)calibrateUsingOrigin:(CLLocation *)origin {
+- (void)calibrateUsingOrigin:(CLLocation *)origin
+{
 	
 	if (![self geoLocation]) 
 		return;
@@ -48,8 +50,8 @@
 	NSLog(@"distance from %@ is %f, angle is %f, azimuth is %f",[self title], [self distanceFromOrigin],angle,[self azimuth]);
 }
 
-+ (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location locationTitle:(NSString *) titleOfLocation {
-
++ (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location locationTitle:(NSString *) titleOfLocation
+{
 	ARGeoCoordinate *newCoordinate	= [[ARGeoCoordinate alloc] init];
 	[newCoordinate setGeoLocation: location];
 	[newCoordinate setTitle: titleOfLocation];
@@ -57,8 +59,8 @@
 	return newCoordinate;
 }
 
-+ (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location fromOrigin:(CLLocation *)origin {
-	
++ (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location fromOrigin:(CLLocation *)origin
+{
 	ARGeoCoordinate *newCoordinate = [ARGeoCoordinate coordinateWithLocation:location locationTitle:@""];
 	[newCoordinate calibrateUsingOrigin:origin];
 	return newCoordinate;

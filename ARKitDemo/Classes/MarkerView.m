@@ -3,20 +3,16 @@
 //  ARKitDemo
 //
 //  Modified by Niels W Hansen on 12/31/11.
-//  Copyright 2011 Agilite Software. All rights reserved.
+//  Copyright 2013 Agilite Software. All rights reserved.
 //
 
-#import "ARViewProtocol.h"
-#import "ARGeoCoordinate.h"
 #import "MarkerView.h"
-
 
 #define BOX_WIDTH 150
 #define BOX_HEIGHT 100
 #define BOX_GAP 10
 #define BOX_ALPHA 0.8
 #define LABEL_HEIGHT 20.0
-
 
 @implementation MarkerView
 
@@ -43,8 +39,7 @@
 		[titleLabel setTextAlignment:	NSTextAlignmentCenter];
 		[titleLabel setText:			[coordinate title]];
 		[titleLabel sizeToFit];
-
-        
+ 
 		[titleLabel setFrame: CGRectMake(BOX_WIDTH / 2.0 - [titleLabel bounds].size.width / 2.0 - 4.0, 0, 
                                          [titleLabel bounds].size.width + 8.0, [titleLabel bounds].size.height + 8.0)];
         
@@ -56,14 +51,12 @@
 		[distLbl setText:			[NSString stringWithFormat:@"%f", [coordinate distanceFromOrigin]]];
 		[distLbl sizeToFit];
         
-        
 		[distLbl setFrame: CGRectMake(BOX_WIDTH / 2.0 - [titleLabel bounds].size.width / 2.0 - 4.0, 
                                       [distLbl bounds].size.height, 
                                       [titleLabel bounds].size.width + 8.0, 
                                       [distLbl bounds].size.height + 8.0)];
         
         
-		
 		UIImageView *pointView	= [[UIImageView alloc] initWithFrame:CGRectZero];
 		[pointView setImage:[UIImage imageNamed:@"location.png"]];
         
@@ -114,12 +107,10 @@
 }
 
 
-
 - (void)dealloc
 {
 
 }
-
 
 
 @end

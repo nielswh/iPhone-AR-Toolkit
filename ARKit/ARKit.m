@@ -3,16 +3,14 @@
 //  AR Kit
 //
 //  Modifed by Niels Hansen 11/20/11.
-//  Copyright 2011 Agilite Software. All rights reserved.
+//  Copyright 2013 Agilite Software. All rights reserved.
 //
 
 #import "ARKit.h"
 
-
 @implementation ARKit
 
 +(BOOL)deviceSupportsAR{
-    
     
     // Go thru and see if the device supports Video Capture.
     NSArray *devices = [AVCaptureDevice devices];
@@ -32,7 +30,6 @@
         return NO;
    
 	//TODO: Check to see if Device supports the Gyroscope (iPhone4 and higher)
-    
 
 	if(![CLLocationManager headingAvailable]){
 		return NO;

@@ -3,12 +3,12 @@
 //  ARKitDemo
 //
 //  Created by Niels Hansen on 9/11/11.
-//  Copyright 2011 Agilite Software. All rights reserved.
+//  Copyright 2013 Agilite Software. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "ARViewProtocol.h"
+#import "ARKit.h"
 
 @interface MainViewController : UIViewController<ARLocationDelegate,ARDelegate,ARMarkerDelegate>
 

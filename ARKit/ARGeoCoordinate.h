@@ -16,7 +16,6 @@
 @property (nonatomic, retain) UIView *displayView;
 @property (nonatomic) double distanceFromOrigin;
 
-
 - (float)angleFromCoordinate:(CLLocationCoordinate2D)first toCoordinate:(CLLocationCoordinate2D)second;
 
 + (ARGeoCoordinate *)coordinateWithLocation:(CLLocation *)location locationTitle:(NSString*) titleOfLocation;

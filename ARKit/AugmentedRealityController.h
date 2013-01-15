@@ -3,17 +3,12 @@
 //  AR Kit
 //
 //  Modified by Niels W Hansen on 12/31/11.
-//  Copyright 2011 Agilite Software All rights reserved.
+//  Copyright 2013 Agilite Software All rights reserved.
 //
 
-#import "ARViewProtocol.h"
-#import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-#import <UIKit/UIKit.h>
-#import <AVFoundation/AVFoundation.h>
+#import "ARKit.h"
 
 @class ARCoordinate;
-
 
 @interface AugmentedRealityController : NSObject <UIAccelerometerDelegate, CLLocationManagerDelegate> {
 	
@@ -42,16 +37,11 @@
 @property (nonatomic, retain) UIViewController          *parentViewController;
 @property (nonatomic, retain) AVCaptureSession          *captureSession;
 @property (nonatomic, retain) AVCaptureVideoPreviewLayer *previewLayer;
-
 @property (nonatomic, assign) id<ARDelegate> delegate;
-
-
-@property (retain) UILabel  *debugView;
-
-@property (nonatomic,retain) NSMutableArray	*coordinates;
+@property (nonatomic, retain) UILabel  *debugView;
+@property (nonatomic, retain) NSMutableArray	*coordinates;
 
 - (id)initWithView:(UIView*)arView parentViewController:(UIViewController*)parentVC withDelgate:(id<ARDelegate>) aDelegate;
-
 - (void)setupDebugPostion;
 - (void)updateLocations;
 - (void)stopListening;

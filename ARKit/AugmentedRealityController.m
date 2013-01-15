@@ -3,17 +3,10 @@
 //  AR Kit
 //
 //  Modified by Niels W Hansen on 5/25/12.
-//  Copyright 2011 Agilite Software. All rights reserved.
+//  Copyright 2013 Agilite Software. All rights reserved.
 //
 
 #import "AugmentedRealityController.h"
-#import "ARCoordinate.h"
-#import "ARGeoCoordinate.h"
-#import "ARViewProtocol.h"
-
-#import <MapKit/MapKit.h>
-#import <QuartzCore/QuartzCore.h>
-#import <AVFoundation/AVFoundation.h>
 
 #define kFilteringFactor 0.05
 #define degreesToRadian(x) (M_PI * (x) / 180.0)
@@ -30,15 +23,14 @@
 #define HEADING_NOT_SET -1.0
 #define DEGREE_TO_UPDATE 1
 
-
 @interface AugmentedRealityController (Private)
-- (void) updateCenterCoordinate;
-- (void) startListening;
-- (void) currentDeviceOrientation;
+- (void)updateCenterCoordinate;
+- (void)startListening;
+- (void)currentDeviceOrientation;
 
-- (double) findDeltaOfRadianCenter:(double*)centerAzimuth coordinateAzimuth:(double)pointAzimuth betweenNorth:(BOOL*) isBetweenNorth;
-- (CGPoint) pointForCoordinate:(ARCoordinate *)coordinate;
-- (BOOL) shouldDisplayCoordinate:(ARCoordinate *)coordinate;
+- (double)findDeltaOfRadianCenter:(double*)centerAzimuth coordinateAzimuth:(double)pointAzimuth betweenNorth:(BOOL*) isBetweenNorth;
+- (CGPoint)pointForCoordinate:(ARCoordinate *)coordinate;
+- (BOOL)shouldDisplayCoordinate:(ARCoordinate *)coordinate;
 
 @end
 
@@ -69,7 +61,6 @@
 		return nil;
     
     [self setParentViewController:parentVC];
-    
     [self setDelegate:aDelegate];
 
     latestHeading   = HEADING_NOT_SET;
@@ -83,25 +74,13 @@
     [self setCoordinates:[NSMutableArray array]];
     [self currentDeviceOrientation];
 	
-    CGRect frame = [arView frame];
-    frame.origin.x = 0;
-    frame.origin.y = 0;
-    
- //   UIView *camView = [[UIView alloc] initWithFrame: frame];
-//    [camView setBackgroundColor:[UIColor orangeColor]];
-  
-	degreeRange = frame.size.width / ADJUST_BY;
-    
-  //  [arView insertSubview:camView atIndex:0];
-    
+	degreeRange = [arView frame].size.width / ADJUST_BY;
 
 #if !TARGET_IPHONE_SIMULATOR
     
+    NSError *error = nil;
     AVCaptureSession *avCaptureSession = [[AVCaptureSession alloc] init];
     AVCaptureDevice *videoCaptureDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
-    NSError *error = nil;
-    
     AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoCaptureDevice error:&error];
     
     if (videoInput) {
@@ -114,7 +93,6 @@
     AVCaptureVideoPreviewLayer *newCaptureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:avCaptureSession];
 
     [[arView layer] setMasksToBounds:YES];
-
     [newCaptureVideoPreviewLayer setFrame:[arView bounds]];
     [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     
@@ -122,7 +100,6 @@
         [[newCaptureVideoPreviewLayer connection] setVideoOrientation:cameraOrientation];
     
     [newCaptureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    
     [[arView layer] insertSublayer:newCaptureVideoPreviewLayer below:[[[arView layer] sublayers] objectAtIndex:0]];
     
     [self setPreviewLayer:newCaptureVideoPreviewLayer];
@@ -142,9 +119,7 @@
                                                  name: UIDeviceOrientationDidChangeNotification object:nil];
     	
 	[self startListening];
- //   [self setCameraView:camView];
     [self setDisplayView:arView];
-    
     
   	return self;
 }
@@ -521,7 +496,6 @@
         degreeRange = bounds.size.width / ADJUST_BY;
         [self updateDebugMode:YES];
         [[self delegate] didUpdateOrientation:orientation];
-        
 	}
 }
 

@@ -3,13 +3,11 @@
 //  AR Kit
 //
 //  Created by Niels W Hansen on 12/31/11.
-//  Copyright 2011 Agilite Software. All rights reserved.
+//  Copyright 2013 Agilite Software. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "ARViewProtocol.h"
-
-@class ARGeoCoordinate;
+#import "ARKit.h"
 
 @interface MarkerView : UIView
 
